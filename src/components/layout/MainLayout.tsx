@@ -1,39 +1,9 @@
-import { Layout, Menu, type MenuProps } from 'antd';
-import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
+import { Layout, Menu } from 'antd';
+import { Outlet } from 'react-router-dom';
+import { adminSidebarItems } from '../../routes/admin.routes';
 
 
 const { Header, Content, Footer, Sider } = Layout;
-
-const items: MenuProps['items'] = [
-    {
-        key: '1',
-        icon: <UploadOutlined />,
-        label: 'Dashboard',
-    },
-    {
-        key: '2',
-        icon: <VideoCameraOutlined />,
-        label: 'Profile',
-    },
-    {
-        key: '3',
-        icon: <UserOutlined />,
-        label: 'User Management',
-        children: [
-            {
-                key: '3-1',
-                icon: <UserOutlined />,
-                label: 'Create Admin',
-            },
-            {
-                key: '3-2',
-                icon: <UserOutlined />,
-                label: 'Create Student',
-            },
-        ],
-    },
-]
-
 
 const MainLayout = () => {
     const currentYear = new Date().getFullYear();
@@ -52,7 +22,7 @@ const MainLayout = () => {
                 <div style={{color:"#fff", textAlign: 'center', height: "3rem", display: "flex", alignItems: "center", justifyContent: "center"}}>
                     <h1 >PH University</h1>
                 </div>
-                <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']} items={items} />
+                <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']} items={adminSidebarItems} />
             </Sider>
             <Layout>
                 <Header style={{ padding: 0, }} />
@@ -63,7 +33,7 @@ const MainLayout = () => {
                             minHeight: 360,
                         }}
                     >
-                        <h1>Main Content Should go here</h1>
+                        <Outlet />
                     </div>
                 </Content>
                 <Footer style={{ textAlign: 'center' }}>
