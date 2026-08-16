@@ -4,6 +4,8 @@ import { sidebarItemsGenerator } from "../../utils/sidebarItemsGenerator";
 import { adminPaths } from "../../routes/admin.routes";
 import type { ItemType, MenuItemType } from "antd/es/menu/interface";
 import type { TSidebarItem } from "../../types";
+import { studentPaths } from "../../routes/student.routes";
+import { facultyPaths } from "../../routes/faculty.routes";
 
 
 
@@ -18,6 +20,7 @@ const Sidebar = () => {
 
     const userRole = "admin";
     let sidebarItems: TSidebarItem[] | ItemType<MenuItemType>[] | undefined;
+
     switch (userRole) {
         case UserRole.ADMIN:
             sidebarItems = sidebarItemsGenerator(adminPaths, UserRole.ADMIN);
