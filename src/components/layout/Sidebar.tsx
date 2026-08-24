@@ -44,8 +44,8 @@ const Sidebar = () => {
                     <h1 >PH University</h1>
                 </div>
                 <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']} items={sidebarItems} />
-            </Sider>
+        </Sider>
     );
 };
 
-export default Sidebar
+export default Sidebar;
