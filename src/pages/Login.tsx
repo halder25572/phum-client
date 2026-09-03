@@ -9,7 +9,6 @@ const Login = () => {
     const {register, handleSubmit} = useForm();
 
     const [login, {data, isLoading, isError}] = useLoginMutation();
-    
 
     const onSubmit = (data: any) => {
         const userInfo = {
@@ -18,6 +17,7 @@ const Login = () => {
         };
         login(userInfo);
     }
+
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
