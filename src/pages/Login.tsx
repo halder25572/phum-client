@@ -1,22 +1,31 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Button } from "antd";
 import { useForm } from "react-hook-form";
 import { useLoginMutation } from "../redux/features/auth/authApi";
+import { useAppDispatch } from "../redux/hooks";
+import { setUser } from "../redux/features/auth/authSlice";
+import { Button } from "antd";
+import { verifyToken } from "../utils/verifyToken";
 
 
 const Login = () => {
 
-    const {register, handleSubmit} = useForm();
+    const dispatch = useAppDispatch();
 
-    const [login, {data, isLoading, isError}] = useLoginMutation();
+    const { register, handleSubmit } = useForm();
 
-    const onSubmit = (data: any) => {
+    const [login] = useLoginMutation();
+
+    const onSubmit = async (data: any) => {
         const userInfo = {
             id: data.id,
             password: data.password
         };
-        login(userInfo);
-    }
+
+        const response = await login(userInfo).unwrap();
+        const user = verifyToken(response.data.accessToken);
+        
+        dispatch(setUser({ user: user, token: response.data.accessToken }));
+    };
 
 
     return (
